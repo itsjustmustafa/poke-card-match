@@ -1,4 +1,4 @@
-const TOTAL_PAIRS = Math.floor(window.location.search.split("?")[1]) || 12;
+const TOTAL_PAIRS = Math.max(Math.min(Math.floor(window.location.search.split("?")[1]) || 12, 25), 1);
 const TOTAL_POKEMON = 1024;
 let board_locked = false;
 const flipped_cards = [];
