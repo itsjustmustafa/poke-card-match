@@ -111,6 +111,11 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    transition: background-color 0.3s 0.5s;
+}
+
+.card.matched .back {
+    background-color: rgb(128, 216, 79);
 }
 
 .card img {

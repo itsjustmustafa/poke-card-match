@@ -45,7 +45,8 @@ async function setupBoard() {
         card.setAttribute("data-name", card_data.name);
 
         cards_flipped.push(new Promise((resolve, reject) => {
-            card.classList.remove("flipped")
+            card.classList.remove("flipped");
+            card.classList.remove("matched");
             card.querySelector(".front_text").innerHTML = "Loading...";
             setTimeout(() => {
                 card.querySelector(".pokemon_name").innerHTML = card_data.name;
@@ -111,6 +112,8 @@ function checkIfMatch() {
     const card2 = flipped_cards[1];
 
     if (card1.dataset.name == card2.dataset.name) {
+        card1.classList.add("matched");
+        card2.classList.add("matched");
         flipped_cards.splice(0, flipped_cards.length);
         score += 1;
 
