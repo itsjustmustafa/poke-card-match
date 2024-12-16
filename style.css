@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    /*     overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(0deg, rgb(0, 10, 88), rgb(0, 108, 110));
+    color: cornsilk */
+    ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    --min_card_width: 150px;
+    --animation_time: 0.5s;
+}
+
+#card-container {
+    width: 90vw;
+    max-width: 1400px;
+    max-height: 90vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--min_card_width, 150px), 1fr));
+    column-gap: 10px;
+    row-gap: 10px;
+    padding: 10px;
+    /* background-color: brown; */
+}
+
+@media screen and (max-width: 800px) {
+    #card-container {
+        --min_card_width: 75px;
+    }
+
+    .card .pokemon_name {
+        font-size: 1rem;
+    }
+
+    .front_text {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .card .pokemon_name {
+        font-size: 2rem;
+    }
+
+    .front_text {
+        font-size: 2rem;
+    }
+}
+
+@media (prefers-reduced-motion) {
+    * {
+        --animation_time: 0s;
+    }
+}
+
+.card {
+    /* background-color: yellowgreen; */
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-inner {
+    background-color: cadetblue;
+    width: 100%;
+    padding-top: 150%;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    transition: transform var(--animation_time, 0.5s) cubic-bezier(.57, 1.42, .8, 1);
+    position: relative;
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.face {
+    backface-visibility: hidden;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* backface-visibility: hidden; */
+
+.front {
+    transform: rotateY(0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.back {
+    transform: rotateY(180deg);
+    background-color: tomato;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card img {
+    width: 100%;
+    padding: 5%;
+    height: auto;
+    border-radius: 10px;
+    position: absolute;
+    z-index: -1;
+    /* image-rendering: optimizeSpeed;
+    image-rendering: crisp-edges;
+    image-rendering: -moz-crisp-edges; */
+    image-rendering: pixelated;
+}
+
+.card .pokemon_name {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 50%);
+    color: black;
+    bottom: 5%;
+    z-index: 1;
+    text-align: center;
+}
