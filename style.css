@@ -67,6 +67,10 @@ body {
     cursor: pointer;
 }
 
+.face:hover {
+    border-color: rgba(0, 0, 0, 0.5);
+}
+
 .card-inner {
     background-color: cadetblue;
     width: 100%;
@@ -91,6 +95,9 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    box-sizing: border-box;
+    border: 4px solid transparent;
+
 }
 
 /* backface-visibility: hidden; */
