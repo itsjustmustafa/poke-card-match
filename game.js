@@ -4,6 +4,7 @@ let board_locked = false;
 const flipped_cards = [];
 let score = 0;
 const cards = [];
+let startingTime = new Date();
 
 const MY_PHOTO = "https://media.licdn.com/dms/image/v2/C5603AQGC1ZHxXSCFJw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1547701341146?e=1740009600&v=beta&t=gJb8n7Vzb7qC9rYYmZB7r43fOhhkY6yVFanB_JC3xsA";
 
@@ -57,7 +58,10 @@ async function setupBoard() {
         }));
 
     });
-    Promise.all(cards_flipped).then(() => board_locked = false);
+    Promise.all(cards_flipped).then(() => {
+        board_locked = false;
+        startingTime = new Date();
+    });
     // board_locked = false;
 }
 
@@ -124,9 +128,11 @@ function checkIfMatch() {
         board_locked = false;
         if (score == TOTAL_PAIRS) {
             board_locked = true;
-            alert("YOU WON!");
+            const totalTime = (new Date) - startingTime;
+            alert(`YOU WON!\nTime: ${totalTime / 1000} seconds`);
             setupBoard();
             score = 0;
+            // startingTime = new Date();
         }
     }, 750);
 
